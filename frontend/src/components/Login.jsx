@@ -20,11 +20,12 @@ function Login() {
    const handleSubmit = async (e) => {
       e.preventDefault();
       const validationErrors = validate(state);
+      console.log(validationErrors);
       if (Object.keys(validationErrors).length > 0) return;
       await axios.post("http://localhost:8080/login", state)
          .then((res) => {
             console.log(res.data)
-            navigate("/game")
+            navigate("/mode")
          })
          .catch((err) => setError(err.response?.data?.message || "Login failed"))
    }
