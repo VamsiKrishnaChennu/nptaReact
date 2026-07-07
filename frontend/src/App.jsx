@@ -7,6 +7,7 @@ import Login from './components/Login'
 import Signup from './components/Signup'
 import Game from './components/Game';
 import Mode from './components/Mode';
+import MultiMode from './components/multiMode';
 import {BrowserRouter,Routes, Route} from 'react-router-dom'
 
 
@@ -22,6 +23,7 @@ function App() {
       <Route path='/signup' element={<Signup />} />
       <Route path='/mode' element={<Mode />} />
       <Route path='/game' element={<Game/>}/>
+      <Route path='/multimode' element={<MultiMode/>}/>
 
      </Routes>    
      </BrowserRouter>
