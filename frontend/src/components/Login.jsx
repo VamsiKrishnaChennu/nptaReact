@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useValidation } from "../hooks/useValidateHook";
 
-function Login() {
+function Login({ compact = false, onSwitchToSignup }) {
    const navigate = useNavigate();
    const [state, setState] = useState({ email: '', pwd: '' })
    const [error, setError] = useState('')
@@ -20,29 +20,67 @@ function Login() {
    const handleSubmit = async (e) => {
       e.preventDefault();
       const validationErrors = validate(state);
-      console.log(validationErrors);
       if (Object.keys(validationErrors).length > 0) return;
-      await axios.post("http://localhost:8080/login", state)
-         .then((res) => {
-            console.log(res.data)
-            navigate("/mode")
-         })
-         .catch((err) => setError(err.response?.data?.message || "Login failed"))
+      try {
+         const res = await axios.post("http://localhost:8080/login", state)
+         console.log(res.data)
+         navigate("/mode")
+      } catch (err) {
+         setError(err.response?.data?.message || "Login failed")
+      }
    }
 
    return (
-      <div className="">
-         <form onSubmit={handleSubmit}>
-            <label>Email:</label>
-            <input type="email" name="email" value={state.email} onChange={handleChange} /> <br />
-            {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-            <label>Password:</label>
-            <input type="password" name="pwd" value={state.pwd} onChange={handleChange} /> <br />
-            {errors.pwd && <p style={{ color: "red" }}>{errors.pwd}</p>}
-            <button type="submit">Login</button>
-         </form>
-         <div>
-            <p>New user <a href="/signup">Register</a></p>
+      <div className={compact ? "w-100" : "min-vh-100 bg-light d-flex align-items-center justify-content-center"}>
+         <div style={{ width: "100%", maxWidth: "420px" }}>
+            {!compact && <h4 className="card-title mb-4 text-center">LOGIN</h4>}
+
+            <form onSubmit={handleSubmit} noValidate>
+               {error && <div className="alert alert-danger">{error}</div>}
+
+               <div className="mb-3">
+                  <label className="form-label">Email</label>
+                  <input
+                     type="email"
+                     name="email"
+                     value={state.email}
+                     onChange={handleChange}
+                     className="form-control"
+                     placeholder="Enter your email"
+                  />
+                  {errors.email && <div className="text-danger small">{errors.email}</div>}
+               </div>
+
+               <div className="mb-3">
+                  <label className="form-label">Password</label>
+                  <input
+                     type="password"
+                     name="pwd"
+                     value={state.pwd}
+                     onChange={handleChange}
+                     className="form-control"
+                     placeholder="Enter your password"
+                  />
+                  {errors.pwd && <div className="text-danger small">{errors.pwd}</div>}
+               </div>
+
+               <div className="mb-3">
+                  <p className="text-muted small">
+                     New user?{' '}
+                     <button
+                        type="button"
+                        className="btn btn-link p-0 text-primary text-decoration-none"
+                        onClick={onSwitchToSignup}
+                     >
+                        Register
+                     </button>
+                  </p>
+               </div>
+
+               <button type="submit" className="btn btn-primary w-100">
+                  Login
+               </button>
+            </form>
          </div>
       </div>
    )

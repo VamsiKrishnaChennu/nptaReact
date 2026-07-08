@@ -1,0 +1,89 @@
+.home-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f7f9ff 0%, #eef5ff 45%, #fdf2ff 100%);
+    padding-bottom: 2rem;
+}
+
+.home-shell {
+    position: relative;
+    z-index: 1;
+}
+
+.home-user-button {
+    padding: 0.7rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid rgba(79, 109, 190, 0.2);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 20px rgba(64, 90, 160, 0.12);
+    transition: all 0.25s ease;
+    min-width: 46px;
+    justify-content: center;
+}
+
+.home-user-button:hover,
+.home-user-button:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(64, 90, 160, 0.16);
+    background: #ffffff;
+}
+
+.home-login-text {
+    display: inline-block;
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: max-width 0.25s ease, opacity 0.25s ease;
+    font-weight: 600;
+    color: #324b83;
+}
+
+.home-user-button:hover .home-login-text,
+.home-user-button:focus-visible .home-login-text {
+    max-width: 80px;
+    opacity: 1;
+}
+
+.home-title {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    letter-spacing: 0.08em;
+    color: #213a68;
+    text-shadow: 0 6px 20px rgba(33, 58, 104, 0.16);
+}
+
+.home-card-btn {
+    border: 1px solid rgba(99, 126, 204, 0.15);
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 12px 30px rgba(34, 57, 103, 0.1);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.home-card-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(34, 57, 103, 0.16);
+    border-color: rgba(99, 126, 204, 0.35);
+}
+
+.home-card-title {
+    color: #27406f;
+}
+
+.home-card-text {
+    color: #6d7b9b;
+}
+
+.home-overlay {
+    background: rgba(13, 22, 41, 0.55);
+    backdrop-filter: blur(3px);
+}
+
+.home-popup-card {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 18px 40px rgba(19, 31, 56, 0.22);
+}
+
+.home-popup-card .card-body {
+    background: linear-gradient(145deg, #ffffff 0%, #f8fbff 100%);
+}
