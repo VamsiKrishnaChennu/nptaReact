@@ -24,4 +24,4 @@ const mode = async (req, res, next) => {
         });
 }
 
-module.exports = { login, register };
+module.exports = { mode };
